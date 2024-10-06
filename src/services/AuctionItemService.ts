@@ -10,7 +10,13 @@ const apiClient=axios.create({
 })
 
 export default{
-    getItems(){
-        return apiClient.get('/auctions')
-    }
+    // getItems(){
+    //     return apiClient.get('/auctions')
+    // },
+
+    getItems(params: { description?: string; type?: string } = {}): Promise<AxiosResponse> {
+        return apiClient.get('/auctions', { params });
+    },
+
+   
 }
