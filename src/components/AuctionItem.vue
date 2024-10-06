@@ -1,5 +1,8 @@
 <script setup lang="ts">
-
+import type { AuctionItem } from '@/types';
+defineProps<{
+   auctionItem : AuctionItem
+}>()
 </script>
 
 <template>
