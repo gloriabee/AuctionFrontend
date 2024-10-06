@@ -1,25 +1,22 @@
 <script setup lang="ts">
 import AuctionItem from '@/components/AuctionItem.vue';
-
 import type { Item } from '@/types';
-import { ref } from 'vue';
-const items= ref<Item[]>([
-  {
-    id:123,
-    description:"Antique Vase",
-    type:"Collectibles"
-  },
-  {
-    id:234,
-    description:"Vintage Pot",
-    type:"Household"
-  },
-  {
-    id:345,
-    description:"Monalisa Picture",
-    type:"Paintings"
-  }
-])
+import { ref,onMounted } from 'vue';
+import AuctionItemService from '@/services/AuctionItemService';
+
+const items=ref<Item[] | null>(null) 
+//the items can be array of Items or null. 
+
+onMounted(()=>{
+  AuctionItemService.getItems()
+  .then((response)=>{
+    items.value=response.data;
+    
+  })
+  .catch((error)=>{
+    console.error('There was an error!',error)
+  })
+})
 
 </script>
 
