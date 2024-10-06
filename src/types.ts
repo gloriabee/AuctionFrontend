@@ -1,4 +1,4 @@
-export interface AuctionItem{
+export interface Item{
     id:number
     description:string
     type:string
